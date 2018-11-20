@@ -13,13 +13,23 @@
   owl:imports <http://bjss.com/arch/base> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:integrationAsAService
+  a base:Assumption ;
+  rdfs:comment "Strategic IT Architecture requires that integration between applications be provided by the Dell Boomi cloud-based integration service.  Provided that this service is available, this project shall endeavour to adhere to this pattern." ;
+  rdfs:label "Integration as a Service" ;
+.
 :keepItSimple
   a base:Principle ;
   rdfs:comment "With the goal of expediency, unnecessary complexities shall be avoided." ;
-  rdfs:label "keep it simple" ;
+  rdfs:label "Keep it simple" ;
+.
+:minimumViableProduct
+  a base:Principle ;
+  rdfs:comment "The initial solution shall be minimal in terms of content and functionality, though not so as to risk business profitability. The solution shall provide for easy enhancement of functionality and enrichment of content." ;
+  rdfs:label "Minimum Viable Product" ;
 .
 :parallelRun
   a base:Principle ;
   rdfs:comment "Existing POS and M2M solutions will operate concurrently with the new systems for the duration of the transition, which may be several months." ;
-  rdfs:label "parallel run" ;
+  rdfs:label "Parallel run" ;
 .

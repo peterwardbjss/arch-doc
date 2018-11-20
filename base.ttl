@@ -10,9 +10,31 @@
   a owl:Ontology ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:Assumption
+  a owl:Class ;
+  rdfs:comment "The validity of these assumptions must be re-considered as the project progresses. If invalidated, any dependant decisions must be re-evaluated." ;
+  rdfs:label "Assumptions" ;
+  rdfs:subClassOf :ShapingFactor ;
+.
+:Constraint
+  a owl:Class ;
+  rdfs:label "Constraint" ;
+  rdfs:subClassOf :ShapingFactor ;
+.
 :Principle
   a owl:Class ;
   rdfs:comment "These principles reflect strategic decisions and are intended to aid key design decisions or implementation choices as the project proceeds." ;
-  rdfs:label "Principle" ;
+  rdfs:label "Principles" ;
+  rdfs:subClassOf :ShapingFactor ;
+.
+:ShapingFactor
+  a owl:Class ;
+  rdfs:comment "Factors that determine the architectural choices." ;
+  rdfs:label "Shaping factor" ;
   rdfs:subClassOf owl:Thing ;
+.
+:Standard
+  a owl:Class ;
+  rdfs:label "Standard" ;
+  rdfs:subClassOf :ShapingFactor ;
 .

@@ -82,18 +82,6 @@
 @prefix xlink: <http://www.w3.org/1999/xlink#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-base:Principle
-  ui:instanceView """
-<tr>
-    <td>{= ui:label(?this) }</td>
-    <td>{#
-            SELECT ?comment
-            WHERE {
-                ?this rdfs:comment ?comment .
-            } }</td>
-</tr>
-"""^^ui:Literal ;
-.
 <http://bjss.com/arch/html-out>
   a owl:Ontology ;
   owl:imports <http://bjss.com/arch/example> ;
@@ -106,24 +94,31 @@ base:Principle
   rdfs:label "Doc part" ;
   rdfs:subClassOf owl:Thing ;
 .
-:Principle
+:ShapingFactor
   a owl:Class ;
   a sh:NodeShape ;
   ui:instanceView """
 <div let:_=\"{#
-        SELECT ?txt
+        SELECT ?label ?comment
         WHERE {
-            base:Principle rdfs:comment ?txt .
+            ?this :displayForClass ?cls .
+            ?cls rdfs:label ?label .
+            ?cls rdfs:comment ?comment .
         } }\">
-    <h2>Principles</h2>
-    <p>{= ?txt }</p>
+    <h2>{= ?label }</h2>
+    <p>{= ?comment }</p>
     <table>
         <ui:forEach ui:resultSet=\"{#
-                SELECT ?p
+                SELECT ?p ?c
                 WHERE {
-                    ?p a base:Principle .
+                    ?this :displayForClass ?cls .
+                    ?p a ?cls .
+                    ?p rdfs:comment ?c .
                 } }\">
-            <ui:resourceView ui:resource=\"{= ?p }\"/>
+            <tr>
+                <td>{= ui:label(?p) }</td>
+                <td>{= ?c }</td>
+            </tr>
         </ui:forEach>
     </table>
 </div>
@@ -131,7 +126,19 @@ base:Principle
   rdfs:label "Principle" ;
   rdfs:subClassOf :DocPart ;
 .
+:displayForClass
+  a owl:FunctionalProperty ;
+  rdfs:domain :ShapingFactor ;
+  rdfs:label "display for class" ;
+  rdfs:range rdfs:Resource ;
+.
+:dummyAssumption
+  a :ShapingFactor ;
+  :displayForClass base:Assumption ;
+  rdfs:label "dummy assumption" ;
+.
 :dummyPrinciple
-  a :Principle ;
+  a :ShapingFactor ;
+  :displayForClass base:Principle ;
   rdfs:label "Principles" ;
 .
