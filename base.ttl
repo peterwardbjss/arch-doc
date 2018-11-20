@@ -12,6 +12,7 @@
 .
 :Principle
   a owl:Class ;
+  rdfs:comment "These principles reflect strategic decisions and are intended to aid key design decisions or implementation choices as the project proceeds." ;
   rdfs:label "Principle" ;
   rdfs:subClassOf owl:Thing ;
 .

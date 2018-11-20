@@ -13,3 +13,8 @@
   owl:imports <http://bjss.com/arch/base> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:parallelRun
+  a base:Principle ;
+  rdfs:comment "Existing POS and M2M solutions will operate concurrently with the new systems for the duration of the transition, which may be several months." ;
+  rdfs:label "parallel run" ;
+.
