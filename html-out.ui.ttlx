@@ -110,20 +110,28 @@ base:Principle
   a owl:Class ;
   a sh:NodeShape ;
   ui:instanceView """
-<table>
-    <ui:forEach ui:resultSet=\"{#
-            SELECT ?p
-            WHERE {
-                ?p a base:Principle .
-            } }\">
-        <ui:resourceView ui:resource=\"{= ?p }\"/>
-    </ui:forEach>
-</table>
+<div let:_=\"{#
+        SELECT ?txt
+        WHERE {
+            base:Principle rdfs:comment ?txt .
+        } }\">
+    <h2>Principles</h2>
+    <p>{= ?txt }</p>
+    <table>
+        <ui:forEach ui:resultSet=\"{#
+                SELECT ?p
+                WHERE {
+                    ?p a base:Principle .
+                } }\">
+            <ui:resourceView ui:resource=\"{= ?p }\"/>
+        </ui:forEach>
+    </table>
+</div>
 """^^ui:Literal ;
   rdfs:label "Principle" ;
   rdfs:subClassOf :DocPart ;
 .
 :dummyPrinciple
   a :Principle ;
-  rdfs:label "dummy principle" ;
+  rdfs:label "Principles" ;
 .
