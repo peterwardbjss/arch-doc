@@ -13,6 +13,11 @@
   owl:imports <http://bjss.com/arch/base> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:keepItSimple
+  a base:Principle ;
+  rdfs:comment "With the goal of expediency, unnecessary complexities shall be avoided." ;
+  rdfs:label "keep it simple" ;
+.
 :parallelRun
   a base:Principle ;
   rdfs:comment "Existing POS and M2M solutions will operate concurrently with the new systems for the duration of the transition, which may be several months." ;
