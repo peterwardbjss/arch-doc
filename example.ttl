@@ -9,27 +9,183 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://bjss.com/arch/example>
-  a owl:Ontology ;
+  rdf:type owl:Ontology ;
   owl:imports <http://bjss.com/arch/base> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:_1
+  rdf:type base:InformationMotion ;
+  base:destination :store ;
+  base:payload :configuration ;
+  base:source :m2m ;
+.
+:_10
+  rdf:type base:InformationMotion ;
+  base:destination :logistics ;
+  base:payload :transportorder ;
+  base:source :sap ;
+.
+:_11
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :deliverynote ;
+  base:source :logistics ;
+.
+:_12
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :transportinvoice ;
+  base:source :logistics ;
+.
+:_13
+  rdf:type base:InformationMotion ;
+  base:destination :manufacturer ;
+  base:payload :purchaseinvoice ;
+  base:source :sap ;
+.
+:_14
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :purchaseorderstatus ;
+  base:source :manufacturer ;
+.
+:_15
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :shippingnotice ;
+  base:source :manufacturer ;
+.
+:_16
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :invoice ;
+  base:source :manufacturer ;
+.
+:_2
+  rdf:type base:InformationMotion ;
+  base:destination :m2m ;
+  base:payload :basketreference ;
+  base:source :web ;
+.
+:_3
+  rdf:type base:InformationMotion ;
+  base:destination :web ;
+  base:payload :configuration ;
+  base:source :m2m ;
+.
+:_4
+  rdf:type base:InformationMotion ;
+  base:destination :om ;
+  base:payload :paidsalesorder ;
+  base:source :web ;
+.
+:_5
+  rdf:type base:InformationMotion ;
+  base:destination :web ;
+  base:payload :orderstatus ;
+  base:source :om ;
+.
+:_6
+  rdf:type base:InformationMotion ;
+  base:destination :notify ;
+  base:payload :orderstatus ;
+  base:source :om ;
+.
+:_7
+  rdf:type base:InformationMotion ;
+  base:destination :sap ;
+  base:payload :paidsalesorder ;
+  base:source :om ;
+.
+:_8
+  rdf:type base:InformationMotion ;
+  base:destination :om ;
+  base:payload :orderstatus ;
+  base:source :sap ;
+.
+:_9
+  rdf:type base:InformationMotion ;
+  base:destination :crm ;
+  base:payload :paidsalesorder ;
+  base:source :om ;
+.
+:basketreference
+  rdf:type base:InformationElement ;
+.
+:configuration
+  rdf:type base:InformationElement ;
+.
+:crm
+  rdf:type base:FunctionalElement ;
+.
+:deliverynote
+  rdf:type base:InformationElement ;
+.
 :integrationAsAService
-  a base:Assumption ;
+  rdf:type base:Assumption ;
   rdfs:comment "Strategic IT Architecture requires that integration between applications be provided by the Dell Boomi cloud-based integration service.  Provided that this service is available, this project shall endeavour to adhere to this pattern." ;
   rdfs:label "Integration as a Service" ;
 .
+:invoice
+  rdf:type base:InformationElement ;
+.
 :keepItSimple
-  a base:Principle ;
+  rdf:type base:Principle ;
   rdfs:comment "With the goal of expediency, unnecessary complexities shall be avoided." ;
   rdfs:label "Keep it simple" ;
 .
+:logistics
+  rdf:type base:FunctionalElement ;
+.
+:m2m
+  rdf:type base:FunctionalElement ;
+.
+:manufacturer
+  rdf:type base:FunctionalElement ;
+.
 :minimumViableProduct
-  a base:Principle ;
+  rdf:type base:Principle ;
   rdfs:comment "The initial solution shall be minimal in terms of content and functionality, though not so as to risk business profitability. The solution shall provide for easy enhancement of functionality and enrichment of content." ;
   rdfs:label "Minimum Viable Product" ;
 .
+:notify
+  rdf:type base:FunctionalElement ;
+.
+:om
+  rdf:type base:FunctionalElement ;
+.
+:orderstatus
+  rdf:type base:InformationElement ;
+.
+:paidsalesorder
+  rdf:type base:InformationElement ;
+.
 :parallelRun
-  a base:Principle ;
+  rdf:type base:Principle ;
   rdfs:comment "Existing POS and M2M solutions will operate concurrently with the new systems for the duration of the transition, which may be several months." ;
   rdfs:label "Parallel run" ;
+.
+:purchaseinvoice
+  rdf:type base:InformationElement ;
+.
+:purchaseorderstatus
+  rdf:type base:InformationElement ;
+.
+:sap
+  rdf:type base:FunctionalElement ;
+.
+:shippingnotice
+  rdf:type base:InformationElement ;
+.
+:store
+  rdf:type base:FunctionalElement ;
+.
+:transportinvoice
+  rdf:type base:InformationElement ;
+.
+:transportorder
+  rdf:type base:InformationElement ;
+.
+:web
+  rdf:type base:FunctionalElement ;
 .
