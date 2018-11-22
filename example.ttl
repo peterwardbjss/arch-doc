@@ -13,6 +13,21 @@
   owl:imports <http://bjss.com/arch/base> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
+:Amplience
+  rdf:type base:FunctionalElement ;
+.
+:Enactor
+  rdf:type base:FunctionalElement ;
+.
+:Enactorforin-storeWCSonweb
+  rdf:type base:FunctionalElement ;
+.
+:PIM
+  rdf:type base:FunctionalElement ;
+.
+:SAP
+  rdf:type base:FunctionalElement ;
+.
 :_1
   rdf:type base:InformationMotion ;
   base:destination :store ;
@@ -109,17 +124,83 @@
   base:payload :paidsalesorder ;
   base:source :om ;
 .
+:address
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Postal address to which an order is to be delivered. Normally customer�s property but may be a collection point." ;
+  rdfs:label "Address" ;
+.
+:alteration
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Customer has made a request for an alteration to be performed." ;
+  rdfs:label "Alteration" ;
+.
+:basket
+  rdf:type base:InformationElement ;
+  base:master :Enactorforin-storeWCSonweb ;
+  rdfs:comment "Collection of items that a customer has assembled and may continue to purchase. Applies to unassisted web shopping and to in-store using tablets." ;
+  rdfs:label "Basket" ;
+.
 :basketreference
   rdf:type base:InformationElement ;
+.
+:category
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "Determines where a product appears in the online product hierarchy." ;
+  rdfs:label "Category" ;
+.
+:colleague
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "Dunelm staff; may qualify for in-store discount." ;
+  rdfs:label "Colleague" ;
 .
 :configuration
   rdf:type base:InformationElement ;
 .
+:configuredproduct
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "The result of a customer�s (assisted or unassisted) selections to configure a made-to-measure item from components." ;
+  rdfs:label "Configured product" ;
+.
 :crm
   rdf:type base:FunctionalElement ;
 .
+:customer
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Someone who buys things from Dunelm, in-store or on the web." ;
+  rdfs:label "Customer" ;
+.
+:customertransaction
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Generically, any commercial transaction between a Customer and Dunelm." ;
+  rdfs:label "Customer transaction" ;
+.
 :deliverynote
   rdf:type base:InformationElement ;
+.
+:description
+  rdf:type base:InformationElement ;
+  base:master :PIM ;
+  rdfs:comment "For in-store tablets and web, a detailed description of a product for sale." ;
+  rdfs:label "Description" ;
+.
+:discount
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "Reflects the ability of a Colleague to obtain Purchasable Product at less than normal retail price." ;
+  rdfs:label "Discount" ;
+.
+:image
+  rdf:type base:InformationElement ;
+  base:master :Amplience ;
+  rdfs:comment "For in-store and web use, photographic images and video of products for sale." ;
+  rdfs:label "Image" ;
 .
 :integrationAsAService
   rdf:type base:Assumption ;
@@ -140,8 +221,23 @@
 :m2m
   rdf:type base:FunctionalElement ;
 .
+:m2mcomponent
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "A Product that is used as part of a Configured Product rather than being available for sale directly." ;
+  rdfs:label "M2M component" ;
+.
 :manufacturer
   rdf:type base:FunctionalElement ;
+  base:master :SAP ;
+  rdfs:comment "A party providing a manufacturing service; either Dunelm workshop or an external supplier." ;
+  rdfs:label "Manufacturer" ;
+.
+:manufacturingbom
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "The exact specifications against which a Manufacturer will produce a Configured Product." ;
+  rdfs:label "Manufacturing BOM" ;
 .
 :minimumViableProduct
   rdf:type base:Principle ;
@@ -165,11 +261,65 @@
   rdfs:comment "Existing POS and M2M solutions will operate concurrently with the new systems for the duration of the transition, which may be several months." ;
   rdfs:label "Parallel run" ;
 .
+:payment
+  rdf:type base:InformationElement ;
+  base:master :om ;
+  rdfs:comment "A record of a customer transaction with a payment service provider." ;
+  rdfs:label "Payment" ;
+.
+:product
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "All items that can be sold, or used to make Configurable Products that can be sold." ;
+  rdfs:label "Product" ;
+.
+:promotion
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "Temporary reduction in Product retail sale price" ;
+  rdfs:label "Promotion" ;
+.
+:purchasableproduct
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "A product that can be bought in-store or on the web, as opposed to those used only in Configurable Products." ;
+  rdfs:label "Purchasable Product" ;
+.
 :purchaseinvoice
   rdf:type base:InformationElement ;
 .
+:purchaseorder
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "An instruction to a Manufacturer to produce a Configurable Product" ;
+  rdfs:label "Purchase Order" ;
+.
 :purchaseorderstatus
   rdf:type base:InformationElement ;
+.
+:refund
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Records the transaction in which a Customer returns a Purchasable Product to store and are reimbursed." ;
+  rdfs:label "Refund" ;
+.
+:sale
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "A Customer Transaction in which the Customer receives Purchasable Products in exchange for Payment." ;
+  rdfs:label "Sale" ;
+.
+:salesbom
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Exact configuration details of a Configurable Product, sufficient for SAP to create a Manufacturer BOM." ;
+  rdfs:label "Sales BOM" ;
+.
+:salesorder
+  rdf:type base:InformationElement ;
+  base:master :Enactor ;
+  rdfs:comment "Request from a Customer for Purchasable Products; this may be fully paid (for web purchase) or part-paid (for in-store)." ;
+  rdfs:label "Sales Order" ;
 .
 :sap
   rdf:type base:FunctionalElement ;
@@ -177,14 +327,34 @@
 :shippingnotice
   rdf:type base:InformationElement ;
 .
+:stock
+  rdf:type base:InformationElement ;
+  base:master :stocks ;
+  rdfs:comment "The quantity of Product available for sale or for manufacturing." ;
+  rdfs:label "Stock" ;
+.
+:stocks
+  rdf:type base:FunctionalElement ;
+.
 :store
   rdf:type base:FunctionalElement ;
+  rdfs:comment "A Dunelm store where Customers may physically engage in in Customer transactions" ;
+  rdfs:label "Store" ;
 .
 :transportinvoice
   rdf:type base:InformationElement ;
 .
 :transportorder
   rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "A request for a Transport Provider to transport Configurable Product from a Manufacturer to an Address." ;
+  rdfs:label "Transport Order" ;
+.
+:transportprovider
+  rdf:type base:InformationElement ;
+  base:master :SAP ;
+  rdfs:comment "An external party that provides transport services in response to a Transport Order." ;
+  rdfs:label "Transport Provider" ;
 .
 :web
   rdf:type base:FunctionalElement ;
