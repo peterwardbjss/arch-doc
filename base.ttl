@@ -1,13 +1,17 @@
 # baseURI: http://bjss.com/arch/base
+# imports: http://spinrdf.org/spin
 
 @prefix : <http://bjss.com/arch/base#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spin: <http://spinrdf.org/spin#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://bjss.com/arch/base>
   rdf:type owl:Ontology ;
+  owl:imports <http://spinrdf.org/spin> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
 :AbstractionLevel
@@ -45,6 +49,56 @@
 .
 :InformationMotion
   rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "p" ;
+          ]
+          [
+            sp:varName "d" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object :InformationMotion ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "s" ;
+              ] ;
+            sp:predicate :source ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "d" ;
+              ] ;
+            sp:predicate :destination ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "p" ;
+              ] ;
+            sp:predicate :payload ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   rdfs:comment "Major piece of glue, identifying what Information moves between Transformation Elements." ;
   rdfs:label "Information motion" ;
   rdfs:subClassOf :Linkage ;

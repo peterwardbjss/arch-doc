@@ -127,7 +127,7 @@
 :address
   rdf:type base:InformationElement ;
   base:master :Enactor ;
-  rdfs:comment "Postal address to which an order is to be delivered. Normally customer�s property but may be a collection point." ;
+  rdfs:comment "Postal address to which an order is to be delivered. Normally customer property but may be a collection point." ;
   rdfs:label "Address" ;
 .
 :alteration
