@@ -31,6 +31,12 @@
   rdfs:label "Element" ;
   rdfs:subClassOf owl:Thing ;
 .
+:FunctionalElement
+  rdf:type owl:Class ;
+  rdfs:comment "Function that takes one (maybe more) InformationElement and converts to a different one. Perhaps makes a Draft Order into a Paid Order, by taking or confirming payment. Perhaps takes a month of ledger entries and produces a closing balance." ;
+  rdfs:label "Transformation element" ;
+  rdfs:subClassOf :Element ;
+.
 :InformationElement
   rdf:type owl:Class ;
   rdfs:comment "Represents a coherent block of information, at any abstraction level. Think 'Customer' or 'Unfulfilled Order'." ;
@@ -41,16 +47,6 @@
   rdf:type owl:Class ;
   rdfs:comment "Major piece of glue, identifying what Information moves between Transformation Elements." ;
   rdfs:label "Information motion" ;
-  rdfs:subClassOf :Linkage ;
-.
-:InformationSink
-  rdf:type owl:Class ;
-  rdfs:label "Information sink" ;
-  rdfs:subClassOf :Linkage ;
-.
-:InformationSource
-  rdf:type owl:Class ;
-  rdfs:label "Information source" ;
   rdfs:subClassOf :Linkage ;
 .
 :Linkage
@@ -81,25 +77,78 @@
   rdfs:label "Storage element" ;
   rdfs:subClassOf :Element ;
 .
-:TransformationElement
+:Transformation
   rdf:type owl:Class ;
-  rdfs:comment "Function that takes one (maybe more) InformationElement and converts to a different one. Perhaps makes a Draft Order into a Paid Order, by taking or confirming payment. Perhaps takes a month of ledger entries and produces a closing balance." ;
-  rdfs:label "Transformation element" ;
-  rdfs:subClassOf :Element ;
+  rdfs:label "Transformation" ;
+  rdfs:subClassOf :Linkage ;
+.
+:callee
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Transformation ;
+  rdfs:label "" ;
+  rdfs:range :FunctionalElement ;
+.
+:caller
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Transformation ;
+  rdfs:label "" ;
+  rdfs:range :FunctionalElement ;
 .
 :conceptual
   rdf:type :AbstractionLevel ;
   rdfs:label "conceptual" ;
 .
+:content
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :StorageElement ;
+  rdfs:label "" ;
+  rdfs:range :InformationElement ;
+.
 :contextual
   rdf:type :AbstractionLevel ;
   rdfs:label "contextual" ;
+.
+:destination
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :InformationMotion ;
+  rdfs:label "" ;
+  rdfs:range :FunctionalElement ;
 .
 :logical
   rdf:type :AbstractionLevel ;
   rdfs:label "logical" ;
 .
+:master
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :InformationElement ;
+  rdfs:label "" ;
+  rdfs:range :FunctionalElement ;
+.
+:payload
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :InformationMotion ;
+  rdfs:label "" ;
+  rdfs:range :InformationElement ;
+.
 :physical
   rdf:type :AbstractionLevel ;
   rdfs:label "physical" ;
+.
+:request
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Transformation ;
+  rdfs:label "" ;
+  rdfs:range :InformationElement ;
+.
+:response
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :Transformation ;
+  rdfs:label "" ;
+  rdfs:range :InformationElement ;
+.
+:source
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :InformationMotion ;
+  rdfs:label "" ;
+  rdfs:range :FunctionalElement ;
 .
